@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="122.084" tests="1" skipped="0" failures="0" errors="0">
+<testcase classname="Google Search Feature" name="User enters a query in the search input field" time="121.756">
+<system-out><![CDATA[
+Given I am on the Google search homepage....................................passed
+When I enter "weather" in the search input field............................passed
+Then the search input field should contain "weather"........................passed
+]]></system-out>
+</testcase>
+</testsuite>
