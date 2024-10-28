@@ -1,103 +1,188 @@
-# Testing Google Search Feature
+# Automate Tests With Selenium and Cucumber in Java.
 
-This documents the full process of testing the Google Search feature for learning purposes.
+**Introduction:** 
+This document outlines the step-by-step for automating tests with Cucumber and Selenium, using JUnit as test runner in Java. 
 
-# Stages
+**Tools Used:**
+- IntelliJ Idea Community Version;
+- JDK;
+- Windows OS.
 
-1. Planning
-2. Design
-3. Development
-4. Testing
-5. Deployment
-6. Maintenance
+## Stages
 
-# Stage #1: Planning (Test Plan)
-The first step is to create a `Test Plan document`. 
-A test plan is a document that outlines the strategy, objectives, scope, resources, schedule, and approach for testing a software application to ensure it meets its requirements and quality standards. 
-
-Here's the test plan for this project: [Test-Plan](src/Test-Plan.md). 
-
-# Stage #2: Design
-After creating the test plan it's time for design. 
-In the design phase of the software development life cycle (SDLC), testers are involved in activities such as reviewing design documents, creating high-level test plans, identifying test scenarios, and collaborating with developers to understand the architecture and design decisions. 
-
-This helps them prepare for effective testing later on and ensures that test coverage aligns with the system's design and requirements.
-
-# Stage #3: Development
-After reviewing the test plan document, it's time to proceed to write and implement the tests. Here's a comprehensive list of task performed in this stage:
-
-| **Task**                                    | **Deliverable**                                                   |
-|---------------------------------------------|-------------------------------------------------------------------|
-| Create Detailed Test Cases                  | [Documented test cases or test scripts](features)                 |
-| Review and Update Test Plans                | [Updated test plan document](Test-Plan.md)                        |
-| Develop Test Data                           | [Prepared test data sets and data generation scripts](main)       |
-| Unit Test Support                           | Unit test coverage documentation and feedback reports             |
-| Smoke Test Preparation                      | Smoke test scripts and criteria for build acceptance              |
-| Automation Script Development               | Automated test scripts for regression testing                     |
-| Collaborate and Communicate with Developers | Meeting notes, feedback documentation, and clarified requirements |
-| Environment Setup and Configuration         | Configured test environment and setup documentation               |
-
-- `Unit Test Support`: coverage documentation and feedback reports can be automatically generated and published through CI tools like Jenkins and Azure DevOps.
-- `Smoke Test Preparation`: in this case, we can consider the GoogleHomePage a smoke test, since it only verifies if the core functionality (the search field) is working—there's no deep validation or complex input-output verification.
-- `Environment Set Up and Configuration Documentation`: The test environment requirements should be organized by categories, such as:
-
-1. Hardware,
-2. Software,
-3. Network,
-4. Data,
-5. Configuration,
-6. Tools,
-7. Access. 
-
-The test environment requirements should also include any assumptions, dependencies, constraints, or risks that may affect the test environment or the testing activities. 
-The test environment requirements should be reviewed, approved, and updated by the relevant stakeholders, such as the testers, the developers, the business analysts, and the customers.
-
-# Stage #4: Testing
-
-In the testing stage of the SDLC, the testing team validates the software's functionality, performance, and security by executing various test cases (e.g., unit, integration, regression), identifying defects, and ensuring the software meets the specified requirements before release.
-
-| **Deliverable**                           | **Description**                                                                                                                                     |
-|-------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Test Execution**                        | [Test cases are executed.](src)                                                                                                                        |
-| **Test Execution Report**                 | [A report capturing the execution status (pass/fail) of all test cases during the testing cycle, including metrics and coverage.](cucumber-reports) |
-| **Defect/Bug Reports**                    | Documentation of identified defects or bugs, including their severity, status, and steps to reproduce them.                                         |
-| **Regression Test Results**               | Results from regression testing to ensure existing functionality is unaffected by changes or new features.                                          |
-| **Performance Test Results**              | Results from performance testing, assessing the application's responsiveness, stability, and scalability under load.                                |
-| **User Acceptance Testing (UAT) Results** | Documentation of UAT outcomes, showing whether the software meets end-users' expectations and requirements for release approval.                    |
-| **Known Issues List**                     | A list of known, non-critical issues that remain open but do not block deployment, often with plans for future fixes or workarounds.                |
-| **Test Summary Report**                   | A comprehensive summary of all testing activities, results, defect statistics, and overall quality assessment.                                      |
-
-- Test Execution Report: TestRails, Azure DevOps, Cucumber (with tools like Pretty or Serenity), Jira with XRay or Zephyr can generate them. In this case, I generated them using "Pretty" with Cucumber.
-- Defect/Bug Reports: BugZilla, Jira, Azure DevOps.
-- 
-# Stage #5: Deployment
-
-In this phase, the software is released and deployed to the production environment, making it available for end-users. 
-This process includes configuration, setting up the live environment, and ensuring the software is accessible and functional in the real-world setting.
-
-Here’s a table of testing deliverables in the Deployment phase of the SDLC:
-
-| **Deliverable**                     | **Description**                                                                                                                                        |
-|-------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Release Notes**                   | Documentation summarizing the release content, including new features, enhancements, bug fixes, and known limitations.                                 |
-| **Deployment Verification Report**  | A report that confirms the successful deployment of the application, including verification of critical functionalities in the production environment. |
-| **Configuration Management Report** | Documentation that ensures the test and production environments are correctly configured and match expected setups.                                    |
-| **Post-Deployment Testing Results** | Results from any testing performed after deployment (e.g., smoke tests) to verify that the application functions as expected in the live environment.  |
-| **Final Test Summary Report**       | A comprehensive report summarizing the overall testing outcomes, including any remaining known issues, and confirming readiness for deployment.        |
-| **User Training Materials**         | Documentation and training materials prepared for users to help them understand new features and functionalities introduced in the release.            |
-
-- `Release notes`: Release notes are often compiled by product managers, technical writers, or project leads. 
-   However, testers may provide input by sharing details on testing outcomes, known issues, bug fixes, and any testing-related updates that are important for the release.
-
-- `Deployment verification report`: Selenium (wih JUnit or TestNG) for automated UI testing can verify if a web application behaves correctly after deployment, with detailed test reports. 
-   Azure DevOps provides deployment pipelines with integrated testing, and reports the success or failure of deployments.
+### 1. Build a Maven Project in IntelliJ Idea Community Edition
+### 2. Create the Directories Structure
+### 3. Install Dependencies and Plugins
+### 4. Create Package 01: Page Object Model (POM) Package
+### 5. Create Package 02: features
+### 6. Create Package 03: hooks
+### 7. Create Package 04: stepsDefinition
+### 8. Create Package 05: testRunner
+### 9. (Depricated) Cucumber Configuration Files
 
 
-# Stage #6: Maintenance
+### 1. Build a Maven Project in IntelliJ Idea Community Edition
 
-In this phase, the software is monitored and maintained post-deployment to ensure it continues to function correctly and meets user needs. This includes:
+Maven: `build automation` and `dependency management tool for Java projects`.
+It simplifies project setup, builds, and configurations using a standardized project structure.
+To build a Maven project in IntelliJ, select `New Project`, then `Maven`. 
+Language - `Java`.
 
-- `Bug Fixing`: Addressing any defects or issues that arise after the software is live.
-- `Updates and Enhancements`: Implementing updates to improve functionality or add new features based on user feedback.
-- `Performance Monitoring`: Continuously assessing the software's performance and making necessary adjustments.
-- `Documentation Updates`: Keeping all related documentation current, including user manuals and technical documentation.
+### 2. Create the Directories Structure
+
+seleniumcucumber/
+├── .idea/
+├── demo/
+│   └── src/
+│       ├── main/
+│       │   ├── java/
+│       │   │   ├── pages/ 
+│       │   └── resources/
+│       └── test/
+│           ├── java/
+│           │   ├── hooks/ 
+│           │   ├── stepsDefinition/ 
+│           │   └── testRunner/ 
+│           └── resources/
+│               └── features/
+│   └── target/
+│   └── pom.xml/
+
+### 3. Install Dependencies and Plugins
+
+In the `pom.xml` file, open the `<dependencies>` block to include all the dependencies.
+
+> `pom.xml`(Project Object Model): Maven file that defines the project's dependencies, build configuration, plugins, and other project-related information.
+
+The order below provides a logical structure, but doesn't impact in the script functioning.
+
+You may need more dependencies later, but these are the main ones to start.
+
+#### 3.1. DEPENDENCIES
+
+> `External libraries or modules` that a project requires to function, providing additional functionality or resources not included in the core framework. Required for running or testing code.
+
+**3.1.1. CORE DEPENDENCY:**
+
+- `Selenium`: **MANDATORY**. Dependency to import Selenium Java classes to automate browser testing.
+
+
+**3.1.2. TESTING FRAMEWORKS DEPENDENCY:**
+
+- `JUnit Jupiter`: **MANDATORY**. Runtime component of JUnit 5 that `discovers and executes tests` written using the JUnit Jupiter API OR Cucumber.
+
+
+- `JUnit Jupiter API`: **OPTIONAL**. Contains the set of `annotations`, `assertions`, and `classes` used to write tests. 
+
+
+- `JUnit Platform Suite Engine`: **MANDATORY**. Component of JUnit 5 that allows to run tests from multiple test frameworks (like JUnit and Cucumber) within the same test suite. 
+
+
+**3.1.3. CUCUMBER DEPENDENCIES:**
+
+- `Cucumber Java Dependency`: **MANDATORY**. component with classes and annotations needed to write step definitions in Java.
+
+
+- `Cucumber JUnit Platform Engine`: **MANDATORY**. Tool to run Cucumber tests using JUnit 5, integrating Cucumber scenarios with the JUnit 5 testing framework.
+
+
+Close the dependencies block with `</dependencies>`.
+
+#### 3.2. PLUGINS
+
+> `Extensions` or `components` that enhance the functionality of a build tool, enabling specific tasks or actions within the build process. Used during the build process itself.
+
+Open the following blocks:
+
+- `<build>`: Where will include the plugins block.
+
+- `<plugins>`: where I'll include each plugin separately.
+
+**MAVEN PLUGINS**:
+
+- `Maven Surefire`: **MANDATORY**. Runs unit and integration tests with JUnit or TestNG in the build phase, ensuring that the code is tested before being integrated or deployed in the CI/CD pipeline.
+
+- `Maven Compiler`: **MANDATORY**.Compiles Java code in a Maven project, specifying the Java version compatibility and other compiler options.
+
+#### 4. Create Package 01: Page Object Model (POM) Package
+
+In the `src/main/java directory`, create the `pages` package in the Page Object Model (POM) design pattern to contain classes representing web pages. 
+These classes encapsulate the elements and actions for each page, like UI interactions with Selenium.
+
+POM is not relevant in `API testing`because there is no user interface to model.
+
+[See pages classes](https://github.com/amandaestevez/00-JAVA-PROGRAMMING/blob/d78f6ced40ae7501ef9b8aaf79bb57dcfea0f398/seleniumcucumber/demo/src/main/java/pages)
+
+#### 5. Create Package 02: features
+
+**FEATURE FILES:**
+
+* FEATURE DEFINITION: A standalone unit or functionality within a project, often containing a list of scenarios that need to be tested.
+
+* FEATURE FILE DEFINITION: A file that stores a feature, its descriptions, scenarios, and their steps. One can create as many feature files as needed. One feature file can have many scenarios.
+
+* SCENARIOS: Cucumber test cases that describe specific user interactions and expected outcomes, written in a Gherkin format.
+
+**FEATURE FILES STEPS:**
+
+1. In the `src/test/resources` directory, create a `features` package.
+2. Create a separate feature file for each feature being tested using Gherkin syntax and save them with the `.feature` extension.
+
+[See feature files](features)
+
+#### 6. Create Package 03: hooks
+
+Hooks are blocks of code that run before or after each scenario, annotated with `@Before` and `@After`. 
+They help manage the code workflow and reduce redundancy.
+
+Typically, one hooks class is sufficient for a Cucumber project, unless it requires different setups or teardowns for distinct features or scenarios.
+
+**HOOKS CLASS CREATION:**
+
+1. In `src/test/java`, set up a new package called `hooks` and create a class called `Hooks.java`.
+2. Import Cucumber's hooks and the relevant Selenium classes.
+3. Write methods to set up and tear down the driver.
+4. Import the Hooks class in the `steps definition` classes so the later will interact with the initialized elements.
+
+[Hooks Class](src/test/java/hooks)
+
+#### 7. Create Package 04: stepsDefinition
+
+Step Definition files contain the code to execute the steps written in Gherkin scenarios. 
+They map each scenario step in the feature file to the corresponding function - focused on scenario behavior. 
+
+**HOW IT WORKS:**
+* When Cucumber runs a step from the feature file, it looks through the step definition file to determine which function to call.
+* It locates the step definition file using the `GLUE_PROPERTY_NAME` with the specified with `@ConfigurationParameters`.
+
+**STEPS DEFINITION FILES CREATION:**
+
+1. In the `src/test/java` directory, create a `stepsDefinition` package.
+2. Create step definition classes for each script in the pages package and map them to the steps in the corresponding feature file.
+
+[Steps Definition classes](stepsDefinition)
+
+#### Package 05: testRunner
+
+* DEFINITION: The TestRunner.java class links and executes Cucumber feature files with their step definitions. 
+This class is annotated with `@Suite` to indicate that it is a test suite.
+
+The annotation `@IncludeEngines("cucumber)` ensures that tests are run using the Cucumber framework, which is essential for interpreting Gherkin feature files.
+
+**RUNNER CLASS STEPS:**
+
+1. In the `src/test/java` directory, create a `testRunner` package. 
+2. Create a class called `TestRunner.java` and annotate it with `@SelectClasspathResource("features")`. 
+3. Annotate it with `@ConfigurationParameter` to specify the package(s) containing step definitions, hooks, and reports.
+
+[Test Runner](testRunner)
+
+### Package 06 (Deprecated): Configuration Files
+
+JUnit 5 doesn't support Cucumber's `configuration.properties` files anymore.
+Instead, it is recommended to add the configurations in the runner class through the `@ConfigurationParameter` annotation, or in the `Maven Surefire` plugin, under `<properties>`, inside the `<Configuration Parameters>` block.
+
+[See JUnit 05 documentation HERE](https://junit.org/junit5/docs/current/user-guide/#running-tests-config-params)
+
+# Conclusion
+With this set up, your cucumber tests should run normally and will see the results through the "Pretty" report.
